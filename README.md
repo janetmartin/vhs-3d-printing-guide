@@ -1,59 +1,50 @@
 # VHS 3D Printing Training Guide
 
-An interactive, mobile-friendly web guide for the Original Prusa i3 MK3S at Vancouver Hackspace (VHS).
+**Document:** VHS-3DP-PRUSAMK3 · **Version:** 1.0 (April 2026)
+
+An interactive, mobile-friendly training guide for the Original Prusa i3 MK3S at Vancouver Hackspace. Members use it on a phone or laptop at the printer to learn the machine, complete their first print, and self-check before sign-off.
 
 ## What it is
 
-A static web page designed to be used at the printer on a phone or laptop at the Vancouver Hackspace.
+A single self-contained page (`index.html`) — no server, no database, no build step. Runs entirely in the browser via React from a CDN, so an internet connection is required. Progress is **not saved between sessions**.
 
-There is no server, no database, and no installation required. It runs entirely in the browser. Progress is not saved between sessions.
-
-## Files
-
-| File | Description |
-|------|-------------|
-| `index.html` | Training guide — 5 tasks, knowledge checks, self-assessment |
-
-## Features
-
-**Training guide (`index.html`)**
-- How This Printer Works — mental model and labelled diagram
-- Filament guide with decision framework
-- 5 step-by-step tasks with tappable checklists
-- WHY explanations for every step (expandable)
-- Good vs bad first layer assessment
-- Live Adjust Z and cancel-or-continue guidance
-- Knowledge check — 10 questions across all 5 tasks
-- Am I Ready? — self-assessment checklist with links back to tasks
-- What's Next — after your first print
-
-## Usage
-
-Open `index.html` in any browser. No installation, no server, no dependencies required.
-
-To use at the printer: host on GitHub Pages and generate a QR code pointing to the URL. Tape the QR code to the printer.
+Covers: how the printer works, a filament decision guide, 5 step-by-step tasks (with checklists, "why" explanations, and per-task quizzes), a good-vs-bad first layer guide, an "Am I Ready?" self-assessment, and "What's Next" after your first print.
 
 ## Editing
 
-All content is plain JavaScript objects at the top of each file. Open in any text editor, find the relevant array (`TASKS`, `TROUBLESHOOTING`, `FILAMENT_GUIDE`, etc.), and edit the text strings directly.
+All content is plain JS objects near the top of `index.html`, inside the `<script type="text/babel">` block. Edit the relevant constant and refresh — no build step.
 
-No build step required. Save the file and refresh the browser to see changes.
+| Constant | Controls |
+|---|---|
+| `HOW_IT_WORKS` | Printer parts & mental model |
+| `FILAMENT_GUIDE` | Filament decision framework & material table |
+| `TASKS` | The 5 tasks — each also holds its own `quiz` array |
+| `NEXT_STEPS` | Post-first-print guidance |
+| `READINESS` | "Am I Ready?" checklist |
+| `DIAGRAM_LABELS` | Printer diagram labels |
+
+Images are embedded as base64 — replacing one means re-encoding and swapping the string.
 
 ## Hosting on GitHub Pages
 
-1. Push `index.html` to the root of a public GitHub repository
-2. Go to Settings → Pages → Source → Deploy from a branch → main → / (root)
-3. Your guide will be live at `https://yourusername.github.io/repository-name`
+1. Push `index.html` to the root of a public repo.
+2. **Settings → Pages → Source → Deploy from a branch → `main` → `/ (root)`**.
+3. Live at `https://yourusername.github.io/repository-name`.
+
+## Known limitations
+
+- No persistence between sessions.
+- Image edits require hand-swapping base64 strings (no `/images` folder).
+- Single ~800-line file — search rather than scroll.
 
 ## Printer
 
-Original Prusa i3 MK3S — Vancouver Hackspace  
-Document number: VHS-3DP-PRUSAMK3
+Original Prusa i3 MK3S — Vancouver Hackspace
 
 ## License
 
-Creative Commons Zero v1.0 Universal (CC0) — public domain. Use, adapt, and share freely.
+CC0 — public domain. Use, adapt, and share freely.
 
-## Built with
+## AI Disclosure
 
-React (via CDN) and plain HTML.
+Created with the assistance of Claude Code.
